@@ -1,2 +1,2 @@
 # Mysql
-Exercícios Mysql Generation Dia 2
+Exercícios Mysql Generation 

@@ -3,51 +3,67 @@ use db_generation_game_online;
 
 create table tb_classe (
 id bigint auto_increment,
-categoria varchar(255) not null,
-ataque int not null,
-defesa int not null,
+nome varchar(255) not null,
+habilidade varchar (150) not null,
 primary key (id)
 );
 
-insert into tb_classe (categoria, ataque, defesa) 
+insert into tb_classe (nome, habilidade) 
 values 
-("Easy", 1000, 500),
-("Regular", 1500, 1000),
-("Premium", 2000, 1500),
-("Gold", 2500, 2000),
-("Super Gold", 3000, 2500);
+("VAMPIRO","SUPER VELOCIDADE"),         
+("VAMPIRO", "MORDIDA APRIMORADA"),
+("VAMPIRO", "SANGUE CURATIVO"),
+("VAMPIRO", "SUPER FORÇA"),
+("VAMPIRO", "MENTE OFENSIVA");
 
 select * from tb_classe;
 
 create table tb_personagem(
 id bigint auto_increment,
 nome varchar(255) not null,
-habilidade varchar(255) not null,
-fraqueza varchar(255) not null,
-categoria_id bigint,
+biografia varchar(255) not null,
+ataque int,
+defesa int,
+classe_id bigint,
 primary key (id),
-foreign key (categoria_id) references tb_classe (id)
+foreign key (classe_id) references tb_classe(id)
 );
 
-insert into tb_personagem (nome, habilidade, fraqueza, categoria_id)
+insert into tb_personagem (nome, biografia, ataque, defesa, classe_id)
 values
-("Anne", "Super Velocidade", "Simbolos religiosos", 2),
-("Damon", "Mordida aprimorada", "Água Benta", 1),
-("Eleonor","Sangue Curativo", "Sol", 3),
-("Stefan","Super Força","Prata", 5),
-("Bonnie", "Mente Ofensiva", "Madeira", 5 ),
-("Jason", "Super Velocidade", "Sol", 1),
-("Ariel", "Sentido Aguçado", "Fogo", 4),
-("Sookie","Resistência Mnetal", "Baixa estatura muscular", 4);
+("ANNE", "SÁBIA", 3200, 3000, 1),
+("DAMON", "ESTRELA", 3000, 2800, 1),
+("ELEONOR","ALEGRE", 2500, 2000, 2),
+("STEFAN","PROTETOR", 4000, 3500, 5),
+("BONNIE", "CENTRADO", 3500, 3000, 4),
+("JASON", "ANIMADO", 2200, 2000, 3),
+("ARIEL", "´LÍDER", 4500, 3200, 5),
+("SOOKIE","APRENDIZ", 2000, 1000, 1);
 
 select * from tb_personagem;
+select * from tb_classe;
 
-select tb_personagem.nome, tb_classe.ataque from tb_personagem inner join tb_classe on tb_classe.id = tb_personagem.categoria_id where tb_classe.ataque>2000;
+-- Faça um select que retorne os personagens com o poder de ataque maior do que 2000.
+select * from tb_personagem where ataque > 2000;
 
-select tb_personagem.nome, tb_classe.ataque from tb_personagem inner join tb_classe on tb_classe.id = tb_personagem.categoria_id where tb_classe.ataque between 1000 and 2000;
+-- Faça um select trazendo os personagens com poder de defesa entre 1000 e 2000.
+select * from tb_personagem where defesa between 1000 and 2000;
 
+-- Faça um select utilizando LIKE buscando os personagens com a letra C.
 select * from tb_personagem where nome like "%C%";
 
-select tb_personagem.nome, tb_personagem.habilidade, tb_personagem.fraqueza, tb_classe.ataque, tb_classe.defesa from tb_personagem inner join tb_classe on tb_classe.id = tb_personagem.categoria_id;
+-- Faça um um select com Inner join entre tabela classe e personagem.
+select * from tb_personagem inner join tb_classe on tb_classe.id = tb_personagem.classe_id;
 
-select * from tb_personagem where habilidade = "Super Velocidade";
+-- Faça um select onde traga todos os personagem de uma classe específica
+select * from tb_personagem inner join tb_classe on tb_classe.id = tb_personagem.classe_id where tb_classe.id = 2;
+
+
+
+
+
+
+
+
+
+

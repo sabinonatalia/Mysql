@@ -45,25 +45,17 @@ select * from tb_categoria;
 select * from tb_pizza;
 
 -- Faça um select que retorne os Produtos com o valor maior do que 45 reais.
-select * from tb_pizza inner join tb_categoria
-on tb_pizza.categoria_id = tb_categoria.id
-where tb_categoria.preco > 45;
+select * from tb_categoria where preco > 45;
 
 -- Faça um select trazendo  os Produtos com valor entre 29 e 60 reais.
-select * from tb_pizza inner join tb_categoria
-on tb_pizza.categoria_id = tb_categoria.id
-where tb_categoria.preco between 29 and 60;
+select * from tb_categoria where preco between 29 and 60;
 
 -- Faça um select  utilizando LIKE buscando os Produtos com a letra C.
-select * from tb_pizza inner join tb_categoria
-on tb_pizza.categoria_id = tb_categoria.id
-where tb_categoria.nome like "%C%";
+select * from tb_categoria where nome like "%C%";
 
 -- Faça um um select com Inner join entre  tabela categoria e pizza.
-select * from tb_pizza inner join tb_categoria
-on tb_pizza.categoria_id = tb_categoria.id;
+select * from tb_pizza inner join tb_categoria on tb_pizza.categoria_id = tb_categoria.id;
 
 -- Faça um select onde traga todos os Produtos de uma categoria específica (exemplo todos os produtos que são pizza doce).
-select * from tb_pizza inner join tb_categoria
-on tb_pizza.categoria_id = tb_categoria.id
+select * from tb_pizza inner join tb_categoria on tb_pizza.categoria_id = tb_categoria.id
 where tb_categoria.nome = "KAROL CONKÁ";
